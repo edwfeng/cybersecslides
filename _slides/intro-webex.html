@@ -1,0 +1,238 @@
+---
+layout: slide
+title: Intro to Webex
+---
+
+<section>
+    <h1>Intro to Web Exploitation</h1>
+</section>
+
+<section>
+    <h2>Before we begin</h2>
+
+    <p>Browsers come with developer tools; you can use these to play around with websites.</p>
+</section>
+
+<section>
+    <h2>The Three Pillars of the Web</h2>
+
+    <ul>
+        <li class="fragment">HTML: Content</li>
+        <li class="fragment">CSS: Styling</li>
+        <li class="fragment">JS: Interactivity</li>
+    </ul>
+</section>
+
+<section>
+    <section>
+        <h2>HTML</h2>
+
+        <pre><code data-trim data-line-numbers>
+            &lt;!DOCTYPE HTML&gt;
+            &lt;html&gt;
+                &lt;head&gt;
+                    &lt;title&gt;Website Title&lt;/title&gt;
+                    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;
+                    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                    &lt;h1&gt;Header!&lt;/h1&gt;
+                    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+                    &lt;p&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;
+                &lt;/body&gt;
+            &lt;/html&gt;
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Linking to a file</h2>
+
+        <pre><code data-trim data-line-numbers="5,6">
+            &lt;!DOCTYPE HTML&gt;
+            &lt;html&gt;
+                &lt;head&gt;
+                    &lt;title&gt;Website Title&lt;/title&gt;
+                    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;
+                    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                    &lt;h1&gt;Header!&lt;/h1&gt;
+                    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+                    &lt;p&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;
+                &lt;/body&gt;
+            &lt;/html&gt;
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Including CSS</h2>
+
+        <pre><code data-trim data-line-numbers>
+            <style>
+                body {
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 1.5rem;
+                    color: blue;
+                }
+            </style>
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Including JS</h2>
+
+        <pre><code data-trim data-line-numbers>
+            <script>
+                function addsOne(a) {
+                    return a + 1;
+                }
+
+                console.log(addsOne(7));
+            </script>
+        </code></pre>
+    </section>
+</section>
+
+<section>
+    <h2>CSS</h2>
+
+    <p>CSS, as a styling language, has no impact on webex.</p>
+    <p class="fragment">As such, it will not be covered in this presentation.</p>
+</section>
+
+<section>
+    <h2>JS</h2>
+
+    <p>JavaScript (no relation to Java) is the de-facto web programming language.</p>
+    <p>It's what handles user input and fetching from server and data processing.</p>
+</section>
+
+<section>
+    <h2>User input</h2>
+
+    <pre><code data-trim data-line-numbers>
+        <form>
+            <input type="text" id="input"/>
+            <input type="submit" onclick="submit()"/>
+        </form>
+
+        <script>
+            function submit() {
+                alert(document.getElementById("input").value);
+            }
+        </script>
+    </code></pre>
+
+    <form>
+        <input type="text" id="user_input"/>
+        <input type="submit" onclick="user_input_submit()"/>
+    </form>
+
+    <script>
+        function user_input_submit() {
+            alert(document.getElementById("user_input").value);
+        }
+    </script>
+</section>
+
+<section>
+    <h2>Problems with user input</h2>
+
+    <p>You can't trust user input.</p>
+    <p class="fragment">Imagine a comment field, where the user comments are then displayed to everyone viewing the page.</p>
+
+    <p class="fragment">What would happen if someone typed in <code>&lt;script&gt;alert(1);&lt;/script&gt;</code>?</p>
+
+    <p class="fragment">A badly-designed website would insert that as is, and then anyone who knows about this can inject arbitrary code.</p>
+</section>
+
+<section>
+    <section>
+        <h2>More injection</h2>
+
+        <p>Many websites store data in SQL databases.</p>
+        <p class="fragment">To get data from a SQL database, we need a SQL query.</p>
+        <pre class="fragment"><code data-trim>
+            SELECT * FROM users WHERE users.name='name' AND users.pass='pass';
+        </code></pre>
+    </section>
+
+    <section>
+        <p>Say we have a login page.</p>
+        <pre class="fragment"><code data-trim data-line-numbers class="js">
+            db.query(
+                "SELECT * FROM users WHERE users.name='" +
+                name +
+                "' AND users.pass='" +
+                pass
+                "';"
+            );
+        </code></pre>
+
+        <aside class="notes">
+            Ignore the fact that we seem to not be hashing the passwords here.
+            We're focusing on a different problem.
+        </aside>
+    </section>
+
+    <section>
+        <p>
+            If someone were to write
+            <br/>
+            <code>' OR 1=1 --</code>,
+            <br/>what would happen?
+        </p>
+
+        <pre class="fragment"><code data-trim data-line-numbers class="js">
+            db.query(
+                "SELECT * FROM users WHERE users.name='someusername' AND users.pass='' OR 1=1 --';"
+            );
+        </code></pre>
+
+        <p class="fragment">They could login as whoever they want.</p>
+        <p class="fragment">Other types of injection exist, like XSS and template injections, etc.</p>
+    </section>
+</section>
+
+<section>
+    <h2>User authentication</h2>
+
+    <p>We want to let people log in.</p>
+    <p class="fragment">We also want to let people stay logged in for a while.</p>
+    <p class="fragment">
+        In this presentation, let's assume that we succesfully hash and salt the password.
+        We are now trying to figure out how to make user logins persistent.
+    </p>
+
+    <aside class="notes">
+        Bear in mind that user login persistence should only last for a short period of time.
+    </aside>
+</section>
+
+<section>
+    <section>
+        <h2>Cookies</h2>
+
+        <p><em>No, not the edible kind.</em></p>
+        
+        <p class="fragment">Cookies are small pieces of data stored in a user's browser.</p>
+        <p class="fragment">What are some potential pitfalls of using cookies?</p>
+    </section>
+
+    <section>
+        <ul>
+            <li class="fragment">
+                Eavesdroppers can listen to the network connection.
+                <p class="fragment">HTTPS uses TLS to encrypt communication.</p>
+            </li>
+            <li class="fragment">
+                People can modify cookies in their browser.
+                <p class="fragment">Have the server sign a cookie, so we can guarantee legitimacy.</p>
+            </li>
+            <li class="fragment">
+                What if the hackers still get access to a cookie, via JS injection/XSS/etc?
+                <p class="fragment">Add a date field when signing the token, and discard any old submissions.</p>
+            </li>
+        </ul>
+    </section>
+</section>
