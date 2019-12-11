@@ -1,0 +1,195 @@
+---
+layout: slide
+title: Intro to Encryption
+---
+
+<section>
+    <h1>Intro to Encryption</h1>
+</section>
+
+<section>
+    <section>
+        <h2>The Caesar Cipher</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg">
+        <p>Shifting letters over.</p>
+
+        <aside class="notes">
+            It's worth noting the amount of computation it takes to break these ciphers.
+            Caesar ciphers are very easy to crack, as there are only 26 possible combinations.
+        </aside>
+    </section>
+
+    <section>
+        <h2>ROT13</h2>
+        <p class="fragment">
+            <strong>Rot</strong>ated <strong>13</strong>
+        </p>
+
+        <p class="fragment">The ROT13 algorithm is a simpler version of the caesar cipher.</p>
+        <p class="fragment">Encoding and decoding data is the same operation: shift 13 spaces.</p>
+    </section>
+
+    <section>
+        <h2>Vigenère cipher</h2>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Vigen%C3%A8re_square_shading.svg" style="height: 70vh; width: auto;">
+    </section>
+</section>
+
+<section>
+    <h2>Encryption</h2>
+    <p><strong>Encryption</strong> is a word you've probably heard of before.</p>
+    <p class="fragment">But what does it really mean?</p>
+
+    <aside class="notes">
+        Say, when some company is attacked with ransomware.
+    </aside>
+</section>
+
+<section data-background="#E4E4E4">
+    <blockquote>
+        <strong>Encryption</strong> is the process of encoding a message or information in such a way that only authorized parties can access it and those who are not authorized cannot.
+        <br />
+        <br />
+        - Wikipedia
+    </blockquote>
+
+    <p class="fragment">Essentially, encryption allows people to securely communicate.</p>
+</section>
+
+<section>
+    <section>
+        <p>Imagine a world where instead of the internet, we had boxes.</p>
+        <p class="fragment">How would we securely send information?</p>
+
+        <aside class="notes">
+            We mail the boxes to each other to communicate.
+            How do we make sure other people aren't reading it?
+            Other people could intercept the box while it's traveling, read it, and send it forward, and we would be none the wiser.
+            This is a MitM attack.
+        </aside>
+    </section>
+
+    <section>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/White_lock.svg/480px-White_lock.svg.png" style="padding: 25px;">
+
+        <aside class="notes">
+            Only the person that has the key for a lock can open it.
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section>
+        <ol>
+            <li class="fragment" data-fragment-index="1">
+                Asymmetric keys (public/private)
+
+                <p class="fragment" data-fragment-index="3">Everybody had a public lock.</p>
+                <p class="fragment" data-fragment-index="4">There is only one key per lock.</p>
+                <p class="fragment" data-fragment-index="5">Anyone can send data by using the lock, and only the intended recipient can decrypt it.</p>
+            </li>
+            <li class="fragment" data-fragment-index="2">
+                Symmetric keys
+
+                <p class="fragment" data-fragment-index="6">
+                    Here, the key is used for both encrypting <em>and</em> decrypting.
+                </p>
+            </li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Asymmetric encryption</h2>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Public_key_encryption.svg" style="background: #E4E4E4; height: 70vh; width: 85vh;">
+    </section>
+
+    <section>
+        <h2>Symmetric encryption</h2>
+
+        <ul>
+            <li class="fragment">Use asymmetric encryption</li>
+            <li class="fragment">
+                Generate the keys so only we know it
+
+                <ol>
+                    <li class="fragment">Choose a modulus and base (call this p/g)</li>
+                    <li class="fragment">Both parties pick their own secret key (a/b)</li>
+                    <li class="fragment">Each party sends g<sup>sec</sup> % p (A/B)</li>
+                    <li class="fragment">We can then compute pub<sup>sec</sup> % p</li>
+                </ol>
+            </li>
+        </ul>
+
+        <aside class="notes">
+            A^b (mod p) = g^ab (mod p) = g^ba (mod p) = B^a (mod p)
+            <br/>
+            We only send p, g, A, B.
+            <br/>
+            Example: (from wikipedia)
+            <ul>
+                <li>p = 23</li>
+                <li>g = 5</li>
+                <li>a = 4</li>
+                <li>b = 3</li>
+                <li>A = 5<sup>4</sup> % 23 = 4</li>
+                <li>B = 5<sup>3</sup> % 23 = 10</li>
+                <li>s = 10<sup>4</sup> % 23 = 18</li>
+                <li>s = 4<sup>3</sup> % 23 = 18</li>
+            </ul>
+        </aside>
+    </section>
+
+    <section>
+        <h2>Symmetric encryption</h2>
+
+        <p>
+            It seems like symmetric keys aren't as good as asymmetric pairs.
+            We have to either use asymmetric keys, or we have to go through a complex generating process.</p>
+        <p class="fragment">So why do we use it?</p>
+
+        <p class="fragment">Asymmetric encryption is slower.</p>
+    </section>
+</section>
+
+
+<section>
+    <section>
+        <h2>Hashing</h2>
+
+        <p><strong>Hashing</strong> maps input values to fixed-length hashes.</p>
+        <p class="fragment">Each input always maps to a certain hash, but inputs can collide.</p>
+        <table>
+            <thead>
+                <tr class="fragment">
+                    <th>Input</th>
+                    <th>MD5</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="fragment">
+                    <td>Hello.</td>
+                    <td><code>f9776f93ac975cd47b598e34d9242d18</code></td>
+                </tr>
+                <tr class="fragment">
+                    <td>Hello!</td>
+                    <td><code>952d2c56d0485958336747bcdd98590d</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Why?</h2>
+
+        <p class="fragment">What happens when we just want to validate that an input is correct?</p>
+        <p class="fragment">Passwords: we <strong>never</strong> want to store the original password.</p>
+        <p class="fragment">Files: the ability to check that we downloaded files correctly.</p>
+    </section>
+
+    <section>
+        <p>We don't want to encrypt the entire file and send double the data.</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/CPT-Hashing-File-Transmission.svg" style="background: #E4E4E4; height: 65vh; width: auto;">
+    </section>
+</section>
