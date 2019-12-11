@@ -1,1 +1,5 @@
 title: BCA Cybersecurity Club
+collections:
+  slides:
+    output: true
+    permalink: /:name
