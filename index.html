@@ -1,15 +1,20 @@
 ---
-layout: home
+layout: main
 ---
 
-<ul>
-    {% for slide in site.slides %}
-        {% if slide.published != false %}
-            <li>
-                <a href="{{ slide.url }}">
-                    {{ slide.title }}
-                </a>
-            </li>
-        {% endif %}
-    {% endfor %}
-</ul>
+<div class="container">
+    <h1>BCA Cybersecurity Club</h1>
+    <h2>Slides</h2>
+
+    <ul>
+        {% for slide in site.slides %}
+            {% if slide.published != false %}
+                <li>
+                    <a href="{{ slide.url }}">
+                        {{ slide.title }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
