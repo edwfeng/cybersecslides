@@ -97,6 +97,24 @@ title: Intro to Encryption
                 </p>
             </li>
         </ol>
+
+        <aside class="notes">
+            Public-key algorithms:
+            <ul>
+                <li>RSA: requires exchange of public key beforehand</li>
+                <li>ECC: Based on elliptic curves</li>
+                <li>DSA: Signing, by the U.S. government</li>
+            </ul>
+
+            Symmetric algorithms:
+            <ul>
+                <li>AES/DES/IDEA*: block-based</li>
+                <li>RC4/Salsa20: stream-based</li>
+                <li>Enigma/Vigenere: old, easily breakable</li>
+            </ul>
+
+            * IDEA: International Data Encryption Algorithm
+        </aside>
     </section>
 
     <section>
@@ -106,12 +124,33 @@ title: Intro to Encryption
     </section>
 
     <section>
+        <h2>Signing</h2>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Private_key_signing.svg" style="background: #E4E4E4; height: 70vh; width: 85vh;">
+
+        <aside class="notes">
+            Applications:
+            <ul>
+                <li>GPG/OpenPGP</li>
+                <li>SSH keys: passwordless authentication</li>
+                <li>TLS/SSL: client-server handshake while making session key</li>
+                <li>X.509/CAs: validating public keys</li>
+            </ul>
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section>
         <h2>Symmetric encryption</h2>
 
         <ul>
             <li class="fragment">Use asymmetric encryption</li>
             <li class="fragment">
                 Generate the keys so only we know it
+
+                <br/>
+                Diffie-Hellman Key Exchange:
 
                 <ol>
                     <li class="fragment">Choose a modulus and base (call this p/g)</li>
@@ -153,7 +192,6 @@ title: Intro to Encryption
     </section>
 </section>
 
-
 <section>
     <section>
         <h2>Hashing</h2>
@@ -178,6 +216,10 @@ title: Intro to Encryption
                 </tr>
             </tbody>
         </table>
+
+        <aside class="notes">
+            Also mention SHA-256
+        </aside>
     </section>
 
     <section>
@@ -191,5 +233,16 @@ title: Intro to Encryption
     <section>
         <p>We don't want to encrypt the entire file and send double the data.</p>
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/CPT-Hashing-File-Transmission.svg" style="background: #E4E4E4; height: 65vh; width: auto;">
+    </section>
+
+    <section>
+        <h2>Salting</h2>
+
+        <p>The problem with hashing is that we can (eventually) figure out what maps to what hash.</p>
+        <p class="fragment">Rainbow tables are tables of precomputed hashes.</p>
+        <p class="fragment">
+            A <strong>salt</strong> is random data added to hashing algorithms.
+            When storing passwords, best practice says that you have a different salt for each password, and then store the hash and salt.
+        </p>
     </section>
 </section>
