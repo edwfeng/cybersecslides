@@ -5,11 +5,11 @@ layout: home
 <ul>
     {% for slide in site.slides %}
         {% if slide.published != false %}
-        <li>
-            <a href="{{ slide.url }}">
-                {{ slide.title }}
-            </a>
-        </li>
+            <li>
+                <a href="{{ slide.url }}">
+                    {{ slide.title }}
+                </a>
+            </li>
         {% endif %}
     {% endfor %}
 </ul>

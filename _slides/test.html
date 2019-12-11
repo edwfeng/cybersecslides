@@ -5,57 +5,57 @@ published: false
 ---
 
 <section data-markdown>
-<textarea data-template>
-# Markdown
+    <textarea data-template>
+        # Markdown
+        
+        This is a slide.
+        
+        1. List item A
+        1. List item B
+        1. List item C
+        
+        [Website](https://google.com)
+        
+        Note:
+        Speaker note
+    </textarea>
+</section>
 
-This is a slide.
+<section>
+    <h2>Lists</h2>
 
-1. List item A
-1. List item B
-1. List item C
+    <ul>
+        <li class="fragment">One</li>
+        <li class="fragment">Two</li>
+        <li class="fragment">Three</li>
+    </ul>
+</section>
 
-[Website](https://google.com)
+<section>
+    <pre><code data-trim data-line-numbers>
+        def func(a, b):
+            return a + b
 
-Note:
-Speaker note
-</textarea>
+        def main():
+            print(func(1, 2)) # Should be 3
+
+        if __name__ == "__main__":
+            main()
+    </code></pre>
 </section>
 
 
 <section>
-<h2>Lists</h2>
+    <pre><code data-trim data-line-numbers="1-2, 7">
+        (define (y-intercept m b)
+          b)
 
-<li class="fragment">One</li>
-<li class="fragment">Two</li>
-<li class="fragment">Three</li>
-</section>
+        (define (x-intercept m b)
+          (/ (- b) m))
 
-
-<section>
-<pre><code data-trim data-line-numbers>
-    def func(a, b):
-        return a + b
-
-    def main():
-        print(func(1, 2)) # Should be 3
-
-    if __name__ == "__main__":
-        main()
-</code></pre>
-</section>
-
-
-<section>
-<pre><code data-trim data-line-numbers="1-2, 7">
-    (define (y-intercept m b)
-      b)
-
-    (define (x-intercept m b)
-      (/ (- b) m))
-
-    (display "(y-intercept 0 0) -> 0: ") (y-intercept 0 0)
-    (display "(y-intercept 1 1) -> 1: ") (y-intercept 1 1)
-    (display "(y-intercept 2 5) -> 5: ") (y-intercept 2 5)
-    (display "(x-intercept 4 6) -> -1.5: ") (x-intercept 4 6)
-</code></pre>
+        (display "(y-intercept 0 0) -> 0: ") (y-intercept 0 0)
+        (display "(y-intercept 1 1) -> 1: ") (y-intercept 1 1)
+        (display "(y-intercept 2 5) -> 5: ") (y-intercept 2 5)
+        (display "(x-intercept 4 6) -> -1.5: ") (x-intercept 4 6)
+    </code></pre>
 </section>
