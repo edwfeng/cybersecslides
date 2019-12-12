@@ -42,3 +42,40 @@ a:active {
 li {
     text-align: start;
 }
+
+kbd {
+    /* Taken from the MDN web docs
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
+     */
+    background-color: #E4E4E4;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+    color: #2F2F2F;
+    display: inline-block;
+    font-family: "Overpass Mono", monospace;
+    font-size: .85em;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0 2px;
+    padding: 1.5px 4px .5px;
+    white-space: nowrap;
+    width: max-content;
+}
+
+.keys {
+    font-size: .8em;
+    margin: auto;
+}
+
+.keys .keys-action {
+    text-align: start;
+}
+
+.keys .keys-binding {
+    text-align: end;
+}
+
+.keys-header {
+    margin-bottom: 8px;
+}
