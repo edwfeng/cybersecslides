@@ -2,68 +2,66 @@
 layout: main
 ---
 
-<div class="container">
-    <h1>BCA Cybersecurity Club</h1>
-    <h2>Slides</h2>
+<h1>BCA Cybersecurity Club</h1>
+<h2>Slides</h2>
 
-    <hr/>
-    <p class="keys-header">Keyboard shortcuts</p>
+<hr/>
+<p class="keys-header">Keyboard shortcuts</p>
 
-    <table class="keys">
-        <tbody>
-            <tr>
-                <td class="keys-binding"><kbd>Space</kbd> <kbd>N</kbd></td>
-                <td class="keys-action">Next slide</td>
-            </tr>
-            <tr>
-                <td class="keys-binding"><kbd>P</kbd></td>
-                <td class="keys-action">Previous slide</td>
-            </tr>
-            <tr>
-                <td class="keys-binding"><kbd>←</kbd> <kbd>H</kbd></td>
-                <td class="keys-action">Move left</td>
-            </tr>
-            <tr>
-                <td class="keys-binding"><kbd>↓</kbd> <kbd>J</kbd></td>
-                <td class="keys-action">Move down</td>
-            </tr>
-            <tr>
-                <td class="keys-binding"><kbd>↑</kbd> <kbd>K</kbd></td>
-                <td class="keys-action">Move up</td>
-            </tr>
-            <tr>
-                <td class="keys-binding"><kbd>→</kbd> <kbd>L</kbd></td>
-                <td class="keys-action">Move right</td>
-            </tr>
-            <tr>
-                <td class="keys-binding"><kbd>.</kbd> <kbd>B</kbd></td>
-                <td class="keys-action">Pause</td>
-            </tr>
-            <tr>
-                <td class="keys-binding"><kbd>Esc</kbd> <kbd>O</kbd></td>
-                <td class="keys-action">Overview</td>
-            </tr>
-            <tr>
-                <td class="keys-binding"><kbd>S</kbd></td>
-                <td class="keys-action">Speaker view</td>
-            </tr>
-            <tr>
-                <td class="keys-binding"><kbd>?</kbd></td>
-                <td class="keys-action">Show help</td>
-            </tr>
-        </tbody>
-    </table>
-    <hr/>
+<table class="keys">
+    <tbody>
+        <tr>
+            <td class="keys-binding"><kbd>Space</kbd> <kbd>N</kbd></td>
+            <td class="keys-action">Next slide</td>
+        </tr>
+        <tr>
+            <td class="keys-binding"><kbd>P</kbd></td>
+            <td class="keys-action">Previous slide</td>
+        </tr>
+        <tr>
+            <td class="keys-binding"><kbd>←</kbd> <kbd>H</kbd></td>
+            <td class="keys-action">Move left</td>
+        </tr>
+        <tr>
+            <td class="keys-binding"><kbd>↓</kbd> <kbd>J</kbd></td>
+            <td class="keys-action">Move down</td>
+        </tr>
+        <tr>
+            <td class="keys-binding"><kbd>↑</kbd> <kbd>K</kbd></td>
+            <td class="keys-action">Move up</td>
+        </tr>
+        <tr>
+            <td class="keys-binding"><kbd>→</kbd> <kbd>L</kbd></td>
+            <td class="keys-action">Move right</td>
+        </tr>
+        <tr>
+            <td class="keys-binding"><kbd>.</kbd> <kbd>B</kbd></td>
+            <td class="keys-action">Pause</td>
+        </tr>
+        <tr>
+            <td class="keys-binding"><kbd>Esc</kbd> <kbd>O</kbd></td>
+            <td class="keys-action">Overview</td>
+        </tr>
+        <tr>
+            <td class="keys-binding"><kbd>S</kbd></td>
+            <td class="keys-action">Speaker view</td>
+        </tr>
+        <tr>
+            <td class="keys-binding"><kbd>?</kbd></td>
+            <td class="keys-action">Show help</td>
+        </tr>
+    </tbody>
+</table>
+<hr/>
 
-    <ul>
-        {% for slide in site.slides %}
-            {% if slide.published != false %}
-                <li>
-                    <a href="{{ slide.url }}">
-                        {{ slide.title }}
-                    </a>
-                </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-</div>
+<ul>
+    {% for slide in site.slides %}
+        {% if slide.published != false %}
+            <li>
+                <a href="{{ slide.url }}">
+                    {{ slide.title }}
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>
