@@ -13,8 +13,19 @@
         </title>
 
         <link rel="stylesheet" href="/css/styles.css">
+        <link rel="shortcut icon" type="image/png" href="/torch.png"/>
     </head>
     <body>
+        <header>
+            <div>
+                <img src="/torch.png" class="icon">
+                <h1>BCA Cybersecurity Club</h1>
+            </div>
+            {% if page.title %}
+                <h2>{{ page.title }}</h2>
+            {% endif %}
+        </header>
+
         <div class="container">
             {{content}}
         </div>
