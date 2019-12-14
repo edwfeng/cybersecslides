@@ -139,6 +139,7 @@ kbd {
 .keys {
     font-size: .8em;
     margin: auto;
+    width: max-content;
 }
 
 .keys .keys-action {
@@ -151,4 +152,8 @@ kbd {
 
 .keys-header {
     margin-bottom: 8px;
+}
+
+#keys-toggle {
+    font-size: .7em;
 }

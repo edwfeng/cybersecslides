@@ -3,9 +3,26 @@ layout: main
 title: Slides
 ---
 
-<p class="keys-header">Keyboard shortcuts</p>
+<em><a href="javascript:toggleKeys();" id="keys-toggle">Show keyboard shortcuts</a></em>
 
-<table class="keys">
+<script>
+function toggleKeys() {
+    var toggle = document.getElementById("keys-toggle");
+    var show = "Show keyboard shortcuts";
+    var hide = "Hide keyboard shortcuts";
+    if ("textContent" in toggle) {
+        toggle.textContent = toggle.textContent == show ? hide : show;
+    } else {
+        toggle.innerText = toggle.innerText == show ? hide : show;
+    }
+    
+    Array.from(document.getElementsByClassName("keys")).forEach(el => {
+        el.style.display = el.style.display == "none" ? "block" : "none";
+    })
+}
+</script>
+
+<table class="keys" style="display: none;">
     <tbody>
         <tr>
             <td class="keys-binding"><kbd>Space</kbd> <kbd>N</kbd></td>
@@ -30,10 +47,6 @@ title: Slides
         <tr>
             <td class="keys-binding"><kbd>→</kbd> <kbd>L</kbd></td>
             <td class="keys-action">Move right</td>
-        </tr>
-        <tr>
-            <td class="keys-binding"><kbd>.</kbd> <kbd>B</kbd></td>
-            <td class="keys-action">Pause</td>
         </tr>
         <tr>
             <td class="keys-binding"><kbd>Esc</kbd> <kbd>O</kbd></td>
