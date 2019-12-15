@@ -39,11 +39,11 @@ a:link, a:visited {
     text-decoration-color: #27C140;
 }
 
-a:hover {
+a:hover, #keys-toggle:hover {
     color: #27C140;
 }
 
-a:active {
+a:active, #keys-toggle:active {
     color: #DA2828;
 
 }
@@ -175,4 +175,5 @@ kbd {
 
 #keys-toggle {
     font-size: .7em;
+    color: #9d9d9d;
 }
