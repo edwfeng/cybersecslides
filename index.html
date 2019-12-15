@@ -68,9 +68,11 @@ function toggleKeys() {
     {% for slide in site.slides %}
         {% if slide.published != false %}
             <li>
-                <a href="{{ slide.url }}">
-                    {{ slide.title }}
-                </a>
+                <a href="{{ slide.url }}">{{ slide.title }}</a>
+
+                <span class="date">
+                    {{ slide.date | date: "%F" }}
+                </span>
             </li>
         {% endif %}
     {% endfor %}
